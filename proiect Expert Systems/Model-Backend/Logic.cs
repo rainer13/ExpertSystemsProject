@@ -15,17 +15,21 @@ namespace proiect_Expert_Systems.Model_Backend
 
             string rootDirectory = "";
             XmlDocument myDoc = new XmlDocument();
-
+            
             try
             {
-                myDoc.LoadXml(@"C:\\Users\\rretzler\\Documents\\Visual Studio 2013\\Projects\\proiect Expert Systems\\proiect Expert Systems\\Model-Backend\\Settings.xml");
+                myDoc.Load(@"C:\Users\rretzler\Documents\Visual Studio 2013\Projects\proiect Expert Systems\proiect Expert Systems\Model-Backend\Settings.xml");
                 int a = 2;
-                rootDirectory = myDoc.SelectSingleNode("/data/rootDirectory").ToString();
+                XmlNode node = myDoc.SelectSingleNode("data/rootDirectory");
+                rootDirectory = node.InnerText.ToString().Trim();
+                node.InnerText += "123";
+                a = 3;
             
             }
             catch (FieldAccessException f)
             {
                 rootDirectory += f.ToString();
+                rootDirectory += f.InnerException;
             }
             catch (XmlException x)
             {
@@ -46,12 +50,7 @@ namespace proiect_Expert_Systems.Model_Backend
 
         }
 
-        public static void countWords(string s) //va returna un int, numarul de cuvinte
-        {
-            string text = System.IO.File.ReadAllText(@s);
-            System.IO.File.WriteAllText(@"C:\\Users\\rretzler\\Desktop\\testES.txt",text);
-        }
-
+       
 
     }
 }
