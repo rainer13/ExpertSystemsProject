@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="butonDeAfisare" Content="Button" HorizontalAlignment="Left" Margin="193,40,0,0" VerticalAlignment="Top" Width="109" Height="56" Click="butonDeAfisare_Click"/>
+        <Button x:Name="butonDeAfisare" Content="Button" HorizontalAlignment="Left" Margin="244,31,0,0" VerticalAlignment="Top" Width="109" Height="56" Click="butonDeAfisare_Click"/>
         <TextBox x:Name="testDeScriere" HorizontalAlignment="Left" Height="110" Margin="193,162,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="109" RenderTransformOrigin="-0.209,0.781"/>
+        <TextBox x:Name="selectedFolder" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="177" Margin="10,31,0,0"/>
 
     </Grid>
 </Window>
