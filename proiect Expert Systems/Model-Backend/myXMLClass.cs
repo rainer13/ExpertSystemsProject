@@ -11,14 +11,16 @@ namespace proiect_Expert_Systems.Model_Backend
     {
 
 
-        static string readRoot(){
+        public static string readRoot()
+        {
 
             string rootDirectory = "";
             XmlDocument myDoc = new XmlDocument();
 
+
             try
             {
-                myDoc.Load(@"C:\Users\rretzler\Documents\Visual Studio 2013\Projects\proiect Expert Systems\proiect Expert Systems\Model-Backend\Settings.xml");
+                myDoc.Load(@".\..\..\Model-Backend\Settings.xml");
                 XmlNode node = myDoc.SelectSingleNode("data/rootDirectory");
                 rootDirectory = node.InnerText.ToString().Trim();
             }
@@ -41,12 +43,12 @@ namespace proiect_Expert_Systems.Model_Backend
 
         }
 
-        static void writeSomeWhere()
+        public static void writeSomeWhere(string location, string data)
         {
 
             XmlDocument myDoc = new XmlDocument();
-            myDoc.Load(@"C:\Users\rretzler\Documents\Visual Studio 2013\Projects\proiect Expert Systems\proiect Expert Systems\Model-Backend\Settings.xml");
-            XmlTextWriter textWriter = new XmlTextWriter(@"C:\Users\rretzler\Documents\Visual Studio 2013\Projects\proiect Expert Systems\proiect Expert Systems\Model-Backend\Settings.xml", System.Text.Encoding.UTF8);
+            myDoc.Load(@".\..\..\Model-Backend\Settings.xml");
+            XmlTextWriter textWriter = new XmlTextWriter(@".\..\..\Model-Backend\Settings.xml", System.Text.Encoding.UTF8);
             myDoc.Save(textWriter);
         }
 
