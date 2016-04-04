@@ -79,6 +79,7 @@
     <Compile Include="Model-Backend\DBCommunication.cs" />
     <Compile Include="Model-Backend\File.cs" />
     <Compile Include="Model-Backend\Logic.cs" />
+    <Compile Include="Model-Backend\myXMLClass.cs" />
     <Compile Include="Model-Backend\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

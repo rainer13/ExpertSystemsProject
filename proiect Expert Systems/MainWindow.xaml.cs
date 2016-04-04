@@ -33,8 +33,8 @@ namespace proiect_Expert_Systems
         private void butonDeAfisare_Click(object sender, RoutedEventArgs e)
         {
             Dictionary<string, double> myVoidDic = Logic.addingFilesToTags(null);
-            File f = new File("C:\\Users\\rretzler\\Desktop\\FolderForESPrj\\file1.txt");
-            f.textToWords();
+            //File f = new File("C:\\Users\\rretzler\\Desktop\\FolderForESPrj\\file1.txt");
+            //f.textToWords();
 
         }
 
