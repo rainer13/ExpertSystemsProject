@@ -17,10 +17,7 @@ namespace proiect_Expert_Systems.Model_Backend
 
             Dictionary<string, double> dic = new Dictionary<string, double>();
             dic.Add("lalal",1);
-            //return dic;
-            //System.IO.File.OpenWrite("C:\\Users\\rretzler\\Desktop\\testES.txt");
-            System.IO.File.WriteAllText(@"C:\\Users\\rretzler\\Desktop\\testES.txt",rootDirectory);
-            return null;
+            return dic;
 
         }
 
