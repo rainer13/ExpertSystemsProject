@@ -52,42 +52,19 @@ namespace proiect_Expert_Systems
     {
         public ObservableCollection<BoolStringClass> myItemList { get; set; }
         public ObservableCollection<BoolStringClass> tagItemsList { get; set; }
-        private DBCommunication dbCommunication;
+       // DBCommunication dbCommunication;
+
         public MainWindow()
         {
-            DBCommunication.startUp();
-            dbCommunication = new DBCommunication();
-
             InitializeComponent();
+         //   dbCommunication = new DBCommunication();
         }    
 
         public void butonDeAfisare_Click(object sender, RoutedEventArgs e)
         {
-
-            Dictionary<string, long> file1 = new Dictionary<string, long>();
-            Dictionary<string, long> file2 = new Dictionary<string, long>();
-
-            file1.Add("Ana",3);
-            file1.Add("Ioana", 3);
-            file1.Add("manca", 3);
-            file1.Add("are", 3);
-            file1.Add("mere", 3);
-            file1.Add("nu", 3);
-            file1.Add("este", 3);
-
-            file2.Add("Ana", 1);
-            file2.Add("Ioana", 2);
-            file2.Add("manca", 6);
-
-           
-
-
-
-            Dictionary<string, double> dddddd = Logic.assignTagToFiles("myTag");
-            //double d = Logic.matchFilessWords(file1, file2);
-
-            //Dictionary<string, double> myDic = Logic.matchFilessWords(file1, file2);
-            GetTagsList(dbCommunication.tags.ToList());
+          //  Dictionary<string, double> myDic = Logic.addingFilesToTags(null);
+          //  DBCommunication dbCommunication = new DBCommunication();            
+           // GetTagsList(dbCommunication.tags.ToList());
 
 
 
@@ -135,11 +112,21 @@ namespace proiect_Expert_Systems
 
         public void butonAddTag_Click(object sender, RoutedEventArgs e)
         {
+            DBCommunication dbCommunication = new DBCommunication();
             Tag tag = new Tag(newTag.Text);
             dbCommunication.tags.Add(tag);
             dbCommunication.SaveChanges();
+            newTag.Text = "";
+            dbCommunication.Dispose();
+            //GetTagsList(dbCommunication.tags.ToList());
         }
-        
+
+        public void butonGetTag_Click(object sender, RoutedEventArgs e)
+        {
+            DBCommunication dbCommunication = new DBCommunication();
+            GetTagsList(dbCommunication.tags.ToList());
+            dbCommunication.Dispose();
+        }
 
 
 
@@ -153,11 +140,6 @@ namespace proiect_Expert_Systems
         {
             System.Windows.Controls.CheckBox chkSelecttedItem = (System.Windows.Controls.CheckBox)sender;
             System.Windows.MessageBox.Show("Selected Item Name= " + chkSelecttedItem.Content.ToString() + System.Environment.NewLine + "Selected Item Value= " + chkSelecttedItem.Tag.ToString());
-        }
-
-        public void butonDeAfisareTaguri_Click(object sender, RoutedEventArgs e)
-        {
-            GetTagsList(dbCommunication.tags.ToList());
         }
          
 
