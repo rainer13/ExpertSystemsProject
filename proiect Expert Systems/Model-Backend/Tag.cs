@@ -29,8 +29,10 @@ namespace proiect_Expert_Systems.Model_Backend
         public Tag(string s)
         {
             name = s;
-            dbComm.tags.Add(this);
+            fileLocations = new List<string>();
         }
+
+        public Tag() { }
 
     }
 }

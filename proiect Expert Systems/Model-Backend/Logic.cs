@@ -21,8 +21,42 @@ namespace proiect_Expert_Systems.Model_Backend
             
             string rootFolder = myXMLClass.readRoot();
 
+            string[] allfiles = System.IO.Directory.GetFiles(rootFolder, "*.*", System.IO.SearchOption.AllDirectories);
+ 
+
+
+
+
             Dictionary<string, double> dic = new Dictionary<string, double>();
-            dic.Add("lalal",1);
+
+            //IEnumerable<Tag> tags = dbCommunication.tags.ToList().Where(m => m.name == tag);
+            //List<string> tagsFiles = tags.First().fileLocations;
+
+            List<string> tagsFiles = new List<string>();
+            tagsFiles.Add(@"C:\Users\rretzler\Desktop\FolderForESPrj\file1.txt");
+
+            foreach (string s in allfiles)
+            {
+                if (tagsFiles.Contains(s))
+                    dic.Add(s, 1);
+                else
+                {
+                    double maxP = 0;
+                    foreach (string ss in tagsFiles)
+                    {
+                        File f1 = new File(s);
+                        File f2 = new File(ss);
+                        Dictionary<string, long> ff1 = f1.textToWords(s);
+                        Dictionary<string, long> ff2 = f2.textToWords(ss);
+                        double p = matchFilessWords(ff1,ff2);
+                        if (p > maxP)
+                            maxP = p;
+                    }
+                    dic.Add(s,maxP);
+                }
+                    
+            }
+            
             return dic;
 
         }
@@ -31,20 +65,18 @@ namespace proiect_Expert_Systems.Model_Backend
         {
             Dictionary<Tag, double> myDic = new Dictionary<Tag, double>();
             File f = new File(file);
-            Dictionary<string, long> filesWords = f.textToWords();
+            Dictionary<string, long> filesWords = f.textToWords(file);
             List<Tag> myTags = dbCommunication.tags.ToList<Tag>();
             foreach (Tag t in myTags)
             {
 
-               double counter = 0;
-                double maxProbability = 0;
+               double maxProbability = 0;
  
                 foreach (string tagsFiles in t.fileLocations)
                 {
-                    ++counter;
                     double dd = 0;
                     File tagsFile = new File(tagsFiles);
-                    Dictionary<string, long> tagsFilesWords = tagsFile.textToWords();
+                    Dictionary<string, long> tagsFilesWords = tagsFile.textToWords(tagsFile.location);
                     dd = matchFilessWords(filesWords, tagsFilesWords);
                     if (dd > maxProbability)
                         maxProbability = dd;
@@ -91,6 +123,8 @@ namespace proiect_Expert_Systems.Model_Backend
                     ppp1 += 1.0 / file1WordlistCount;
                 }
             }
+
+            d /= counter;
             foreach (KeyValuePair<string, long> kvp in file2WordsList)
             {
                 long l;
@@ -105,11 +139,16 @@ namespace proiect_Expert_Systems.Model_Backend
 
             long l1 = file1.Count, l2 = file2.Count;
 
-            
-            pp2 = 1.0 * s2 / file2WordCount;
-            ppp2 = s2 / (counter + s2);
+            if (c2 != 0)
+            {
+                pp2 = 1.0 * s2 / file2WordCount;
+                ppp2 = s2 / (c2 + s2);
 
-            d -= (pp1/c1 + ppp1/c1 + pp2 + ppp2) / 4;
+
+                if (c1 != 0)
+                    d -= (pp1 / c1 + ppp1 / c1 + pp2 + ppp2) / 4;
+            }
+           
 
             
             return Math.Max(d,0);

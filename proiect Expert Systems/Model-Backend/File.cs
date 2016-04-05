@@ -44,7 +44,7 @@ namespace proiect_Expert_Systems.Model_Backend
             isDirectory = true;
         }
 
-        public Dictionary<string, long> textToWords()
+        public Dictionary<string, long> textToWords(string location)
         {
             Dictionary<string, long> wordCount = new Dictionary<string, long>();
             string allText = System.IO.File.ReadAllText(@location);
@@ -91,6 +91,8 @@ namespace proiect_Expert_Systems.Model_Backend
             catch (Exception e) { }
             return wordCount;
         }
+
+        public File() { }
 
 
     }
