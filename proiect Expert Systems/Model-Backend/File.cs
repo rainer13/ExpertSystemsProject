@@ -86,7 +86,7 @@ namespace proiect_Expert_Systems.Model_Backend
                 s += w.Key + " " + w.Value + "\n";
             try
             {
-                System.IO.File.WriteAllText(@"C:\\Users\\rretzler\\Desktop\\testES.txt", s);
+                System.IO.File.WriteAllText(@"C:\Users\Iulia\Desktop\folder\file1.txt", s);
             }
             catch (Exception e) { }
             return wordCount;
