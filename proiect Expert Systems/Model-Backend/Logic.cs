@@ -102,7 +102,7 @@ namespace proiect_Expert_Systems.Model_Backend
             List<KeyValuePair<string, long>> file1WordsList = file1.ToList();
             List<KeyValuePair<string, long>> file2WordsList = file2.ToList();
             
-            long c1 = 0, c2 = 0, s1 = 0, s2 = 0, counter=0;
+            long c1 = 0, c2 = 0, counter=0;
             double pp1=0.0, ppp1=0.0, pp2=0.0, ppp2=0.0;
             
             foreach (KeyValuePair<string, long> kvp in file1WordsList)
@@ -132,8 +132,8 @@ namespace proiect_Expert_Systems.Model_Backend
                 if (!b)
                 {
                     ++c2;
-                    pp2 += 1.0 * kvp.Value / file1WordCount;
-                    ppp2 += 1.0 / file1WordlistCount;
+                    pp2 += 1.0 * kvp.Value / file2WordCount;
+                    ppp2 += 1.0 / file2WordlistCount;
                 }
             }
 
@@ -141,12 +141,12 @@ namespace proiect_Expert_Systems.Model_Backend
 
             if (c2 != 0)
             {
-                pp2 = 1.0 * s2 / file2WordCount;
-                ppp2 = s2 / (c2 + s2);
+                pp2 = pp2 / c2;
+                ppp2 = c2 / (c2 + counter);
 
 
                 if (c1 != 0)
-                    d -= (pp1 / c1 + ppp1 / c1 + pp2 + ppp2) / 4;
+                    d -= (pp1 / c1 + ppp1 / (c1+counter) + pp2 + ppp2) / 4;
             }
            
 
