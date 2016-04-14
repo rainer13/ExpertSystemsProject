@@ -13,7 +13,7 @@ namespace proiect_Expert_Systems.Model_Backend
     {
 
 
-        public DBCommunication() : base(@"Server=ISS27\SQLEXPRESS; Database=dbForESPrj; User Id=sa; Password=unu") { }
+        public DBCommunication() : base(@"Server=RAINER\SQLEXPRESS; Database=dbForESPrj; User Id=sa; Password=r@iner") { }
 
         public static void startUp(){
             //Debug.Write(Database.Connection.ConnectionString);
